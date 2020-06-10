@@ -2,6 +2,12 @@
 	name = Todd Brown
 	email = mrbrownt@me.com
 
+[pull]
+	rebase = true
+
+[core]
+	pager = diff-so-fancy | less --tabs=4 -RFX
+
 [includeIf "gitdir:~/Projects/github.com/semcat/"]
 	path = ~/.applied-gitconfig
 

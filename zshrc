@@ -8,7 +8,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="agnoster"
+ZSH_THEME="robbyrussell"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -60,6 +60,24 @@ HIST_STAMPS="yyyy-mm-dd"
 # Plugins
 plugins=(git kubectl)
 
+# Custom aliases
+alias work="cd ~/Projects/gitlab.com/appliedsystems/us-rating"
+command -v bat &>/dev/null && alias cat="bat"
+
+# Linuxbrew
+if [[ $(uname -s) = *Linux* ]]; then
+  eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+fi
+
+# ZSH homebrew completions
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+
+  autoload -Uz compinit
+  compinit
+fi
+
+# Load ohmyzsh
 source $ZSH/oh-my-zsh.sh
 
 # bat replaces cat
@@ -67,6 +85,20 @@ if command -v bat &>/dev/null; then
   alias cat="bat"
 fi
 
-# gcloud completion
-source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
-export PATH="/usr/local/opt/node@12/bin:$PATH"
+# WSL Config
+if grep -q microsoft /proc/version; then
+  # Load ssh agent
+  eval $(ssh-agent) &>/dev/null
+  ssh-add ~/.ssh/id_ed25519 &>/dev/null
+
+  # Alias to clean up WSL 2 cache
+  alias drop-cache="sudo sh -c \"echo 3 >'/proc/sys/vm/drop_caches' && swapoff -a && swapon -a && printf '\n%s\n' 'Ram-cache and Swap Cleared'\""
+fi
+
+# Kubernetes prompt
+if type brew &>/dev/null; then
+  if type kube_ps1 &>/dev/null; then
+    source "$(brew --prefix)/share/kube-ps1.sh"
+    PROMPT="$(kube_ps1)$PROMPT"
+  fi
+fi
