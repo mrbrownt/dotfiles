@@ -85,7 +85,7 @@ if command -v bat &>/dev/null; then
 fi
 
 # WSL Config
-if grep -q microsoft /proc/version; then
+if grep -q microsoft /proc/version &>/dev/null; then
   # Load ssh agent
   eval $(ssh-agent) &>/dev/null
   ssh-add ~/.ssh/id_ed25519 &>/dev/null
