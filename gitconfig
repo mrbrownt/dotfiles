@@ -1,3 +1,9 @@
 [user]
 	name = Todd Brown
 	email = mrbrownt@me.com
+
+[includeIf "gitdir:~/Projects/github.com/semcat/"]
+	path = ~/.applied-gitconfig
+
+[includeIf "gitdir:~/Projects/gitlab.com/appliedsystems/"]
+	path = ~/.applied-gitconfig

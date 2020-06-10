@@ -1,7 +1,9 @@
-- clean: ['~']
+- clean: ["~"]
 
 - link:
-    ~/.gitconfig: gitconfig
-    ~/.zshrc: zshrc
+    ~/.gitconfig:
+    ~/.applied-gitconfig:
+    ~/.zshrc:
 
-
+- create:
+    - ~/Projects
