@@ -62,7 +62,6 @@ plugins=(git kubectl)
 
 # Custom aliases
 alias work="cd ~/Projects/gitlab.com/appliedsystems/us-rating"
-command -v bat &>/dev/null && alias cat="bat"
 
 # Linuxbrew
 if [[ $(uname -s) = *Linux* ]]; then
