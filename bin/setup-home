@@ -2,24 +2,31 @@
 
 set -e
 
-if [ ! -f "$HOME/.ssh/id_ed25519" ]; then
-  if ! op-personal-key; then
-    op-signin
-    op-personal-key
-  fi
-fi
+[ -n "$TRACE" ] && set -x
 
-function op-personal-key() {
-  op get document "Personal SSH Key" >~/.ssh/personal_ed25519
+function op-key-setup() {
+  KEY="$HOME/.ssh/$2"
+  PUB="$HOME/.ssh/$2.pub"
+
+  op get document "$1" >"$KEY"
+  chmod +x "$KEY"
+
+  # Pub key setup
+  if [ ! -f "$PUB" ]; then
+    ssh-keygen -y -f "$KEY" >"$PUB"
+  fi
 }
 
 if [ ! -f "$HOME/.ssh/id_ed25519" ]; then
-  if ! op-work-key; then
-    op-signin
-    op-work-key
+  if ! op-key-setup "Applied SSH Key" id_ed25519; then
+    op-signin thebrownhouse
+    op-key-setup "Applied SSH Key" id_ed25519
   fi
 fi
 
-function op-work-key() {
-  op get document "Applied SSH Key" >~/.ssh/id_ed25519
-}
+if [ ! -f "$HOME/.ssh/personal_ed25519" ]; then
+  if ! op-key-setup "Personal SSH Key" personal_ed25519; then
+    op-signin thebrownhouse
+    op-key-setup "Personal SSH Key" personal_ed25519
+  fi
+fi
