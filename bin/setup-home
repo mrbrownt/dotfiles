@@ -1,0 +1,25 @@
+#!/bin/bash
+
+set -e
+
+if [ ! -f "$HOME/.ssh/id_ed25519" ]; then
+  if ! op-personal-key; then
+    op-signin
+    op-personal-key
+  fi
+fi
+
+function op-personal-key() {
+  op get document "Personal SSH Key" >~/.ssh/personal_ed25519
+}
+
+if [ ! -f "$HOME/.ssh/id_ed25519" ]; then
+  if ! op-work-key; then
+    op-signin
+    op-work-key
+  fi
+fi
+
+function op-work-key() {
+  op get document "Applied SSH Key" >~/.ssh/id_ed25519
+}

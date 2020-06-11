@@ -4,6 +4,10 @@
     ~/.gitconfig:
     ~/.applied-gitconfig:
     ~/.zshrc:
+    ~/bin:
+      glob: true
+      create: true
+      path: bin/*
 
 - create:
     - ~/Projects
