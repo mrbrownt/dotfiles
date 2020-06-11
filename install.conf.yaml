@@ -1,4 +1,6 @@
-- clean: ["~"]
+- clean:
+    - "~"
+    - "~/bin"
 
 - link:
     ~/.gitconfig:
@@ -11,3 +13,7 @@
 
 - create:
     - ~/Projects
+
+- shell:
+    - setup/brew.sh
+    - setup/ssh-id.sh
