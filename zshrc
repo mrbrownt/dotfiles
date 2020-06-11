@@ -63,6 +63,9 @@ plugins=(git kubectl)
 # Custom aliases
 alias work="cd ~/Projects/gitlab.com/appliedsystems/us-rating"
 
+# CLI Editor
+EDITOR=nano
+
 # Linuxbrew
 if [[ $(uname -s) = *Linux* ]]; then
   eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
