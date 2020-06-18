@@ -79,6 +79,11 @@ if type brew &>/dev/null; then
   compinit
 fi
 
+# Google cloud SDK completions
+if [ -f /usr/share/google-cloud-sdk/completion.zsh.inc ]; then
+  source /usr/share/google-cloud-sdk/completion.zsh.inc
+fi
+
 # Load ohmyzsh
 source $ZSH/oh-my-zsh.sh
 
@@ -99,8 +104,10 @@ fi
 
 # Kubernetes prompt
 if type brew &>/dev/null; then
-  if type kube_ps1 &>/dev/null; then
-    source "$(brew --prefix)/share/kube-ps1.sh"
-    PROMPT="$(kube_ps1)$PROMPT"
-  fi
+  KUBE_PS1_PREFIX=""
+  KUBE_PS1_SUFFIX=" "
+  KUBE_PS1_SEPARATOR=""
+  KUBE_PS1_DIVIDER="|"
+  source "$(brew --prefix)/share/kube-ps1.sh"
+  PROMPT='$(kube_ps1)'$PROMPT
 fi
