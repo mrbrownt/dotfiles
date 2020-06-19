@@ -64,7 +64,7 @@ plugins=(git kubectl)
 alias work="cd ~/Projects/gitlab.com/appliedsystems/us-rating"
 
 # CLI Editor
-EDITOR=nano
+export EDITOR=nano
 
 # Linuxbrew
 if [[ $(uname -s) = *Linux* ]]; then
@@ -103,7 +103,7 @@ if grep -q microsoft /proc/version &>/dev/null; then
 fi
 
 # Kubernetes prompt
-if type brew &>/dev/null; then
+if type brew &>/dev/null && [ -f "$(brew --prefix)/share/kube-ps1.sh" ]; then
   KUBE_PS1_PREFIX=""
   KUBE_PS1_SUFFIX=" "
   KUBE_PS1_SEPARATOR=""
