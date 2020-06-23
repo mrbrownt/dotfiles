@@ -98,6 +98,9 @@ if grep -q microsoft /proc/version &>/dev/null; then
   eval $(ssh-agent) &>/dev/null
   ssh-add ~/.ssh/id_ed25519 &>/dev/null
 
+  # Set brave browser for WSL
+  export BROWSER="/mnt/c/Program Files (x86)/BraveSoftware/Brave-Browser/Application/brave.exe"
+
   # Alias to clean up WSL 2 cache
   alias drop-cache="sudo sh -c \"echo 3 >'/proc/sys/vm/drop_caches' && swapoff -a && swapon -a && printf '\n%s\n' 'Ram-cache and Swap Cleared'\""
 fi
