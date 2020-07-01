@@ -58,7 +58,7 @@ HIST_STAMPS="yyyy-mm-dd"
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
 # Plugins
-plugins=(git kubectl)
+plugins=(git git-auto-fetch kubectl)
 
 # Custom aliases
 alias work="cd ~/Projects/gitlab.com/appliedsystems/us-rating"
