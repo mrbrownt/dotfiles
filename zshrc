@@ -79,9 +79,13 @@ if type brew &>/dev/null; then
   compinit
 fi
 
-# Google cloud SDK completions
+# Google cloud SDK completions WSL
 if [ -f /usr/share/google-cloud-sdk/completion.zsh.inc ]; then
   source /usr/share/google-cloud-sdk/completion.zsh.inc
+fi
+# Google cloud SDK Completeions macOS
+if [ -f /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc ]; then
+  source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
 fi
 
 # Load ohmyzsh
