@@ -1,0 +1,27 @@
+Host *bastion*
+  ForwardAgent yes
+
+Host eu-west-2-bastion-production
+  HostName 35.179.56.201
+  ForwardAgent yes
+
+Host ip-10-0-8-99
+  HostName 52.5.113.143
+  ForwardAgent yes
+
+Host 10.100.*
+  ProxyCommand ssh -W %h:%p eu-west-2-bastion-production
+
+#work account
+Host gitlab-as-toddbrown
+	HostName gitlab.com
+	User git
+	IdentityFile ~/.ssh/id_ed25519
+  IdentitiesOnly yes
+
+#personal account
+Host gitlab-as-mrbrownt
+	HostName gitlab.com
+	User git
+	IdentityFile ~/.ssh/personal_ed25519
+  IdentitiesOnly yes

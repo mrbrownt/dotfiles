@@ -3,8 +3,9 @@
     - "~/bin"
 
 - link:
-    ~/.gitconfig:
     ~/.applied-gitconfig:
+    ~/.ssh/config: ssh-config
+    ~/.gitconfig:
     ~/.zshrc:
     ~/bin:
       glob: true
