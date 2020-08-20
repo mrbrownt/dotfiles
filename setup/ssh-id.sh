@@ -23,10 +23,3 @@ if [ ! -f "$HOME/.ssh/id_ed25519" ]; then
     op-key-setup "Applied SSH Key" id_ed25519
   fi
 fi
-
-if [ ! -f "$HOME/.ssh/personal_ed25519" ]; then
-  if ! op-key-setup "Personal SSH Key" personal_ed25519; then
-    op-signin thebrownhouse
-    op-key-setup "Personal SSH Key" personal_ed25519
-  fi
-fi
