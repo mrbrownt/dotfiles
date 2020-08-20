@@ -1,0 +1,21 @@
+#!/bin/sh
+
+set -e
+
+if command -v brew >/dev/null; then
+  brew upgrade
+  brew cleanup
+fi
+
+if command -v apt-get >/dev/null; then
+  sudo apt-get update
+  sudo apt-get upgrade -y
+fi
+
+if command -v softwareupdate >/dev/null; then
+  softwareupdate -ia
+fi
+
+if command -v mas >/dev/null; then
+  mas upgrade
+fi

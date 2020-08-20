@@ -60,9 +60,6 @@ HIST_STAMPS="yyyy-mm-dd"
 # Plugins
 plugins=(git git-auto-fetch kubectl)
 
-# Custom aliases
-alias work="cd ~/Projects/gitlab.com/appliedsystems/us-rating"
-
 # CLI Editor
 export EDITOR=nano
 
@@ -72,7 +69,7 @@ if [[ $(uname -s) = *Linux* ]]; then
 fi
 
 # ZSH homebrew completions
-if type brew &>/dev/null; then
+if type brew >/dev/null; then
   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
 
   autoload -Uz compinit
@@ -91,16 +88,23 @@ fi
 # Load ohmyzsh
 source $ZSH/oh-my-zsh.sh
 
+# Custom aliases
+alias work="cd ~/Projects/gitlab.com/appliedsystems/us-rating"
+if command -v git-cz >/dev/null; then
+  unalias gc
+  alias gc="git-cz"
+fi
+
 # bat replaces cat
-if command -v bat &>/dev/null; then
+if command -v bat >/dev/null; then
   alias cat="bat"
 fi
 
 # WSL Config
-if grep -q microsoft /proc/version &>/dev/null; then
+if grep -q microsoft /proc/version >/dev/null; then
   # Load ssh agent
-  eval $(ssh-agent) &>/dev/null
-  ssh-add ~/.ssh/id_ed25519 &>/dev/null
+  eval $(ssh-agent) >/dev/null
+  ssh-add ~/.ssh/id_ed25519 >/dev/null
 
   # Set brave browser for WSL
   export BROWSER="/mnt/c/Program Files (x86)/BraveSoftware/Brave-Browser/Application/brave.exe"
@@ -110,7 +114,7 @@ if grep -q microsoft /proc/version &>/dev/null; then
 fi
 
 # Kubernetes prompt
-if type brew &>/dev/null && [ -f "$(brew --prefix)/share/kube-ps1.sh" ]; then
+if type brew >/dev/null && [ -f "$(brew --prefix)/share/kube-ps1.sh" ]; then
   KUBE_PS1_PREFIX=""
   KUBE_PS1_SUFFIX=" "
   KUBE_PS1_SEPARATOR=""
