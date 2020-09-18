@@ -18,3 +18,10 @@ Host gitlab-as-toddbrown
 	User git
 	IdentityFile ~/.ssh/id_ed25519
   IdentitiesOnly yes
+
+#personal account
+Host gitlab-as-mrbrownt
+	HostName gitlab.com
+	User git
+	IdentityFile ~/.ssh/personal_ed25519
+  IdentitiesOnly yes
