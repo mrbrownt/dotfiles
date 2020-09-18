@@ -89,6 +89,10 @@ fi
 source $ZSH/oh-my-zsh.sh
 
 # Custom aliases
+unalias grbi
+unalias grbm
+unalias grbd
+
 alias work="cd ~/Projects/gitlab.com/appliedsystems/us-rating"
 if command -v git-cz &>/dev/null; then
   unalias gc
