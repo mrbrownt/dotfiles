@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 set -e
 
@@ -18,4 +18,8 @@ fi
 
 if command -v mas >/dev/null; then
   mas upgrade
+fi
+
+if systemctl is-active --quiet netdata; then
+  bash <(curl -Ss https://my-netdata.io/kickstart.sh)
 fi
