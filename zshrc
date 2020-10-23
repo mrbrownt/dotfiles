@@ -94,6 +94,7 @@ unalias grbm
 unalias grbd
 
 alias work="cd ~/Projects/gitlab.com/appliedsystems/us-rating"
+alias play="cd ~/Projects/gitlab.com/mrbrownt"
 if command -v git-cz &>/dev/null; then
   unalias gc
   alias gc="git-cz"
