@@ -12,7 +12,7 @@ if command -v apt-get >/dev/null; then
   sudo apt-get upgrade -y
 fi
 
-if command -v snap >/dev/null; then
+if ! grep -q microsoft /proc/version &>/dev/null && command -v snap >/dev/null; then
   sudo snap refresh
 fi
 

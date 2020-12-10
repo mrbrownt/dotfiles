@@ -13,3 +13,6 @@
 
 [includeIf "gitdir:~/Projects/gitlab.com/appliedsystems/"]
 	path = ~/.applied-gitconfig
+
+[credential]
+	helper = /mnt/c/Program\\ Files/Git/mingw64/libexec/git-core/git-credential-manager.exe
