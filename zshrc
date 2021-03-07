@@ -39,7 +39,7 @@ ZSH_THEME="frontcube"
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -58,7 +58,7 @@ HIST_STAMPS="yyyy-mm-dd"
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
 # Plugins
-plugins=(git git-auto-fetch kubectl)
+plugins=(git kubectl)
 
 # CLI Editor
 export EDITOR=nano
@@ -126,4 +126,5 @@ if type brew &>/dev/null && [ -f "$(brew --prefix)/share/kube-ps1.sh" ]; then
   KUBE_PS1_DIVIDER="|"
   source "$(brew --prefix)/share/kube-ps1.sh"
   PROMPT='$(kube_ps1)'$PROMPT
+  kubeoff
 fi

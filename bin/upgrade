@@ -24,6 +24,8 @@ if command -v mas >/dev/null; then
   mas upgrade
 fi
 
-if command -v systemctl >/dev/null && systemctl is-active --quiet netdata; then
+if ! grep -q microsoft /proc/version &>/dev/null &&
+  command -v systemctl >/dev/null &&
+  systemctl is-active --quiet netdata; then
   bash <(curl -Ss https://my-netdata.io/kickstart.sh)
 fi
