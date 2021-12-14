@@ -1,6 +1,6 @@
 [user]
 	name = Todd Brown
-	email = mrbrownt@me.com
+	email = todd.brown@hey.com
 
 [pull]
 	rebase = true
@@ -11,11 +11,8 @@
 [core]
 	pager = diff-so-fancy | less --tabs=4 -RFX
 
-[includeIf "gitdir:~/Projects/github.com/semcat/"]
-	path = ~/.applied-gitconfig
-
-[includeIf "gitdir:~/Projects/gitlab.com/appliedsystems/"]
-	path = ~/.applied-gitconfig
-
 [credential]
-	helper = /mnt/c/Program\\ Files/Git/mingw64/libexec/git-core/git-credential-manager.exe
+	helper = /mnt/c/Program\\ Files/Git/mingw64/libexec/git-core/git-credential-manager-core.exe
+
+[init]
+	defaultBranch = master

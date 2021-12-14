@@ -63,11 +63,6 @@ plugins=(git kubectl)
 # CLI Editor
 export EDITOR=nano
 
-# Linuxbrew
-if [[ $(uname -s) = *Linux* ]]; then
-  eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-fi
-
 # ZSH homebrew completions
 if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH

@@ -14,7 +14,3 @@
 
 - create:
     - ~/Projects
-
-- shell:
-    - setup/brew.sh
-    - setup/ssh-id.sh
