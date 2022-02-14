@@ -1,13 +1,16 @@
 #!/bin/bash
 
+[[ -n "$TRACE" ]] && set -x
 set -e
 
 if command -v brew >/dev/null; then
+  echo "Updating brew packages..."
   brew upgrade
   brew cleanup
 fi
 
 if command -v apt-get >/dev/null; then
+  echo "Updating apt packages..."
   sudo apt-get update
   sudo apt-get upgrade -y
 fi
@@ -15,27 +18,29 @@ fi
 # Non WSL linux updates
 if ! grep -q microsoft /proc/version &>/dev/null; then
   if command -v snap >/dev/null; then
+    echo "Updating snap packages..."
     sudo snap refresh
   fi
 
   if command -v systemctl >/dev/null &&
     systemctl is-active --quiet netdata; then
+    echo "Updating netdata..."
     bash <(curl -Ss https://my-netdata.io/kickstart.sh)
   fi
 fi
 
-if command -v mas >/dev/null; then
-  mas upgrade
-fi
-
 if command -v nix-channel &>/dev/null &&
   command -v launchctl &>/dev/null; then
+  echo "Updating nix packages..."
   nix-channel --update
   nix-env -iA nixpkgs.nix
   sudo launchctl remove org.nixos.nix-daemon
   sudo launchctl load /Library/LaunchDaemons/org.nixos.nix-daemon.plist
+  # Keep nix tidy
+  nix-env --delete-generations old
 fi
 
 if command -v softwareupdate >/dev/null; then
+  echo "Updating macOS..."
   softwareupdate -ia
 fi
