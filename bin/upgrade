@@ -12,20 +12,30 @@ if command -v apt-get >/dev/null; then
   sudo apt-get upgrade -y
 fi
 
-if ! grep -q microsoft /proc/version &>/dev/null && command -v snap >/dev/null; then
-  sudo snap refresh
-fi
+# Non WSL linux updates
+if ! grep -q microsoft /proc/version &>/dev/null; then
+  if command -v snap >/dev/null; then
+    sudo snap refresh
+  fi
 
-if command -v softwareupdate >/dev/null; then
-  softwareupdate -ia
+  if command -v systemctl >/dev/null &&
+    systemctl is-active --quiet netdata; then
+    bash <(curl -Ss https://my-netdata.io/kickstart.sh)
+  fi
 fi
 
 if command -v mas >/dev/null; then
   mas upgrade
 fi
 
-if ! grep -q microsoft /proc/version &>/dev/null &&
-  command -v systemctl >/dev/null &&
-  systemctl is-active --quiet netdata; then
-  bash <(curl -Ss https://my-netdata.io/kickstart.sh)
+if command -v nix-channel &>/dev/null &&
+  command -v launchctl &>/dev/null; then
+  nix-channel --update
+  nix-env -iA nixpkgs.nix
+  sudo launchctl remove org.nixos.nix-daemon
+  sudo launchctl load /Library/LaunchDaemons/org.nixos.nix-daemon.plist
+fi
+
+if command -v softwareupdate >/dev/null; then
+  softwareupdate -ia
 fi

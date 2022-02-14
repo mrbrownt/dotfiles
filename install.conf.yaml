@@ -3,14 +3,14 @@
     - "~/bin"
 
 - link:
-    ~/.applied-gitconfig:
     ~/.ssh/config: ssh-config
     ~/.gitconfig:
     ~/.zshrc:
+      force: true
     ~/bin:
       glob: true
       create: true
       path: bin/*
 
 - create:
-    - ~/Projects
+    - ~/src
