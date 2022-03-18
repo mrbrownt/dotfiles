@@ -32,10 +32,16 @@ fi
 if command -v nix-channel &>/dev/null &&
   command -v launchctl &>/dev/null; then
   echo "Updating nix packages..."
+
+  # Update nix channle
   nix-channel --update
   nix-env -iA nixpkgs.nix
   sudo launchctl remove org.nixos.nix-daemon
   sudo launchctl load /Library/LaunchDaemons/org.nixos.nix-daemon.plist
+
+  # Update packages
+  nix-env -u
+
   # Keep nix tidy
   nix-env --delete-generations old
 fi
