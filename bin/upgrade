@@ -29,15 +29,16 @@ if ! grep -q microsoft /proc/version &>/dev/null; then
   fi
 fi
 
-if command -v nix-channel &>/dev/null &&
-  command -v launchctl &>/dev/null; then
+if command -v nix-channel &>/dev/null; then
   echo "Updating nix packages..."
 
   # Update nix channle
   nix-channel --update
   nix-env -iA nixpkgs.nix
-  sudo launchctl remove org.nixos.nix-daemon
-  sudo launchctl load /Library/LaunchDaemons/org.nixos.nix-daemon.plist
+  if command -v launchctl &>/dev/null; then
+    sudo launchctl remove org.nixos.nix-daemon
+    sudo launchctl load /Library/LaunchDaemons/org.nixos.nix-daemon.plist
+  fi
 
   # Update packages
   nix-env -u
