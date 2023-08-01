@@ -14,3 +14,9 @@ Host gitlab-as-mrbrownt
 	User git
 	IdentityFile ~/.ssh/personal_ed25519
   IdentitiesOnly yes
+
+# Devbox
+Host internal
+	HostName *.int.toddbrown.dev
+	User mrbrownt
+	ForwardAgent yes
